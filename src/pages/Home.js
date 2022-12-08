@@ -1,66 +1,34 @@
-import UserRow from "../components/UserRow";
+import ProductCard from "../components/ProductCard";
+import { useState, useEffect } from "react";
 
-function Home({ users, userList, setUserList }) {
-  console.log(users);
+function Home() {
+  const [products, setProducts] = useState([]);
+
+  const url = "https://618fa735f6bf4500174849a5.mockapi.io/products";
+
+  const getProducts = () => {
+    fetch(url, { method: "GET" })
+      .then((data) => data.json())
+      .then((prd) => setProducts(prd));
+  };
+
+  useEffect(() => getProducts(), []);
+
   return (
-    <>
-      <div className="row">
-        <h2>Manage Users</h2>
-      </div>
-      <div className="row">
-        <div className="col-md-12">
-          <div className="card">
-            <div className="card-body">
-              <div className="table-responsive">
-                <table className="table no-wrap user-table mb-0">
-                  <thead>
-                    <tr>
-                      <th
-                        scope="col"
-                        className="border-0 text-uppercase font-medium pl-4"
-                      >
-                        #
-                      </th>
-                      <th
-                        scope="col"
-                        className="border-0 text-uppercase font-medium"
-                      >
-                        Name
-                      </th>
-                      <th
-                        scope="col"
-                        className="border-0 text-uppercase font-medium"
-                      >
-                        Email
-                      </th>
-                      <th
-                        scope="col"
-                        className="border-0 text-uppercase font-medium"
-                      >
-                        Manage
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {users.map((user) => {
-                      console.log(user);
-                      return (
-                        <UserRow
-                          key={user.id}
-                          userdata={user}
-                          userList={userList}
-                          setUserList={setUserList}
-                        />
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+    <div>
+      <div className="container justify-content-center">
+        <div className="row">
+          <h2>List of products created</h2>
         </div>
       </div>
-    </>
+      <div className="container justify-content-center">
+        <div className="row">
+          {products.map(function (itm) {
+            return <ProductCard key={itm.id} product={itm} />;
+          })}
+        </div>
+      </div>
+    </div>
   );
 }
 

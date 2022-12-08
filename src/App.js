@@ -1,86 +1,67 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import AddUser from "./pages/AddUser";
-import EditUser from "./pages/EditUser";
-import Profile from "./pages/Profile";
-import EditProfile from "./pages/EditProfile";
-import { useState } from "react";
 import NavBar from "./components/NavBar";
-
-const users = [
-  {
-    name: "Mr. Estelle Reichel",
-    email: "Marques71@yahoo.com",
-    pic: "http://placeimg.com/480/480/people",
-    id: "1",
-  },
-  {
-    name: "Tracy Sanford",
-    email: "Kiarra60@gmail.com",
-    pic: "http://placeimg.com/480/480/people",
-    id: "2",
-  },
-  {
-    name: "Jimmie Rutherford",
-    email: "Creola55@hotmail.com",
-    pic: "http://placeimg.com/480/480/people",
-    id: "3",
-  },
-  {
-    name: "Alonzo Ferry",
-    email: "Myrtle_Goldner@hotmail.com",
-    pic: "http://placeimg.com/480/480/people",
-    id: "4",
-  },
-  {
-    name: "Shelia Lynch V",
-    email: "Lauren.Bode9@hotmail.com",
-    pic: "http://placeimg.com/480/480/people",
-    id: "5",
-  },
-];
+import Home from "./pages/Home";
+import AddProduct from "./pages/AddProduct";
+import EditProduct from "./pages/EditProduct";
+import ProductDetail from "./pages/ProductDetail";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
-  const [userList, setUserList] = useState(users);
+  // const products = [
+  //   {
+  //     productName: "Handmade Plastic Chair",
+  //     productImg: "http://placeimg.com/640/480/fashion",
+  //     productPrice: "561.00",
+  //     id: "1",
+  //   },
+  //   {
+  //     productName: "Small Steel Gloves",
+  //     productImg: "http://placeimg.com/640/480/fashion",
+  //     productPrice: "412.00",
+  //     id: "2",
+  //   },
+  //   {
+  //     productName: "Refined Frozen Bacon",
+  //     productImg: "http://placeimg.com/640/480/fashion",
+  //     productPrice: "214.00",
+  //     id: "3",
+  //   },
+  //   {
+  //     productName: "Refined Metal Pizza",
+  //     productImg: "http://placeimg.com/640/480/fashion",
+  //     productPrice: "567.00",
+  //     id: "4",
+  //   },
+  //   {
+  //     productName: "Refined Steel Pants",
+  //     productImg: "http://placeimg.com/640/480/fashion",
+  //     productPrice: "552.00",
+  //     id: "5",
+  //   },
+  // ];
   return (
-    <><div class="URL">
-      <a href='https://github.com/Jagadeesh-Kumar-Initial-Is-S' target='_blank'>Submitted and coded by Jagadeesh Kumar . S, you may send mail to my email address which is jagadeesh_2k17@proton.me, you may contribute some money to my Indian Unified Payment Interface (UPI) which is jagadeesh-kumar@ybl .</a>
-      <br/><br/>
-      <div className="App">
-        <NavBar />
-        <div className="container">
-          <Switch>
-            <Route path="/" exact>
-              <Home
-                users={userList}
-                userList={userList}
-                setUserList={setUserList} />
-            </Route>
-            <Route path="/adduser">
-              <AddUser userList={userList} setUserList={setUserList} />
-            </Route>
-            <Route path="/edit/:id">
-              <EditUser userList={userList} setUserList={setUserList} />
-            </Route>
-            <Route path="/profile/:id">
-              <Profile userList={userList} />
-            </Route>
-            <Route path="/editprofile/:id">
-              <EditProfile userList={userList} setUserList={setUserList} />
-            </Route>
-            <Route path="**" exact>
-              <h2>404</h2>
-            </Route>
-          </Switch>
-        </div>
-      </div>
+    <div className="App">
+      <NavBar />
+      <Switch>
+        <Route path="/" exact>
+          <Home />
+        </Route>
+        <Route path="/add" exact>
+          <AddProduct />
+        </Route>
+        <Route path="/dashboard" exact>
+          <Dashboard />
+        </Route>
+        <Route path="/edit/:id" exact>
+          <EditProduct />
+        </Route>
+        <Route path="**" exact>
+          <h2>404</h2>
+        </Route>
+      </Switch>
     </div>
-    <br/>
-    <div class="URL">
-        <a href='https://github.com/Jagadeesh-Kumar-Initial-Is-S' target='_blank'>Submitted and coded by Jagadeesh Kumar . S, you may send mail to my email address which is jagadeesh_2k17@proton.me, you may contribute some money to my Indian Unified Payment Interface (UPI) which is jagadeesh-kumar@ybl .</a>
-      </div></>
   );
 }
 
